@@ -6,8 +6,7 @@
 
 var UI = require('ui');
 var Vector2 = require('vector2');
-// var Base64 = require('base64');
-var creds = require('credentials');
+var config = require('config');
 
 var main = new UI.Card({
   title: 'Pebble.js',
@@ -48,9 +47,8 @@ main.on('click', 'select', function(e) {
   });
   splashCard.show();
 
-  var auth = 'Basic ' + btoa(creds.user + ':' + creds.pass);
-  var statusUrl = 'http://192.168.1.69/get_params.cgi';
-//   console.log('auth ' + auth);
+  var auth = 'Basic ' + btoa(config.credentials.user + ':' + config.credentials.pass);
+  var statusUrl = config.ipcam.url + '/get_params.cgi';
 
   ajax({url: statusUrl, type: 'text', headers : { Authorization: auth }},
     function(js) {
