@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+	  <meta charset="utf-8">
+	  <title>Bootstrap Form Builder</title>
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	  <meta name="description" content="">
+	  <meta name="author" content="">
+	  <link href="assets/css/lib/bootstrap.min.css" rel="stylesheet">
+	  <link href="assets/css/lib/bootstrap-responsive.min.css" rel="stylesheet">
+	  <link href="assets/css/custom.css" rel="stylesheet">
+	  <!--[if lt IE 9]>
+	  <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	  <![endif]-->
+  </head>
+  <body>
+	<script>
+	  function saveToPebble() {
+	  	var ipcam_url = document.getElementById("ipcam_url").value;
+	  	var ipcam_username = document.getElementById("ipcam_username").value;
+	  	var ipcam_password = document.getElementById("ipcam_password").value;
+	  	var options = {
+	  			ipcam_url: document.getElementById("ipcam_url").value,
+	  			ipcam_username: document.getElementById("ipcam_username").value,
+	  			ipcam_password: document.getElementById("ipcam_password").value };
+	  	document.location = 'pebblejs://close#' + encodeURIComponent(JSON.stringify(options));
+	  }
+	</script>
+	<fieldset>
+
+	<!-- Form Name -->
+	<legend>ArmLock Settings</legend>
+
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="ipcam_url">IPCam URL</label>
+	  <div class="controls">
+	  <input id="ipcam_url" name="ipcam_url" type="text" placeholder="1http://" class="input-xlarge">
+
+	  </div>
+	</div>
+
+	<!-- Text input-->
+	<div class="control-group">
+	  <label class="control-label" for="ipcam_username">IPCam Username</label>
+	  <div class="controls">
+	  <input id="ipcam_username" name="ipcam_username" type="text" placeholder="" class="input-xlarge">
+
+	  </div>
+	</div>
+
+	<!-- Password input-->
+	<div class="control-group">
+	  <label class="control-label" for="ipcam_password">IPCam Password</label>
+	  <div class="controls">
+	  <input id="ipcam_password" name="ipcam_password" type="password" placeholder="" class="input-xlarge">
+	
+	  </div>
+	</div>
+
+	<!-- Button  -->
+	<div class="controls">
+	  <button onclick="saveToPebble()" id="saveButton" name="saveButton" class="btn btn-success">Save</button>
+	</div>
+
+	</fieldset>
+
+  </body>
+</html>
