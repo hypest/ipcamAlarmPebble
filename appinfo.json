@@ -1,7 +1,7 @@
 {
     "appKeys": {},
     "capabilities": [
-        ""
+        "configurable"
     ],
     "companyName": "stefanostogoulidis@gmail.com",
     "longName": "lockalarm",
