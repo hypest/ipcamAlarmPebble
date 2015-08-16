@@ -4,40 +4,38 @@
  * This is where you write your app.
  */
 
-console.log('lockAlarm is starting');
+console.log('fosAlarm is starting');
 
 var UI = require('ui');
 var Vector2 = require('vector2');
 var ajax = require('ajax');
 var Settings = require('settings');
 
-var ipcam_url = Settings.option("ipcam_url");
-var ipcam_username = Settings.option("ipcam_username");
-var ipcam_password = Settings.option("ipcam_password");
-
-console.log("settings:" + ipcam_url + ", " + ipcam_username + ", " + ipcam_password);
-
-var statusUrl = ipcam_url + '/get_params.cgi';
-var setAlarmUrl = ipcam_url + '/set_alarm.cgi?next_url=alarm.htm&motion_armed=1&input_armed=0&motion_sensitivity=3&iolinkage=0&upload_interval=0&schedule_enable=0&schedule_sun_0=0&schedule_sun_1=0&schedule_sun_2=0&schedule_mon_0=0&schedule_mon_1=0&schedule_mon_2=0&schedule_tue_0=0&schedule_tue_1=0&schedule_tue_2=0&schedule_wed_0=0&schedule_wed_1=0&schedule_wed_2=0&schedule_thu_0=0&schedule_thu_1=0&schedule_thu_2=0&schedule_fri_0=0&schedule_fri_1=0&schedule_fri_2=0&schedule_sat_0=0&schedule_sat_1=0&schedule_sat_2=0';
+var statusUri =  '/get_params.cgi';
+var setAlarmUri = '/set_alarm.cgi?next_url=alarm.htm&motion_armed=1&input_armed=0&motion_sensitivity=3&iolinkage=0&upload_interval=0&schedule_enable=0&schedule_sun_0=0&schedule_sun_1=0&schedule_sun_2=0&schedule_mon_0=0&schedule_mon_1=0&schedule_mon_2=0&schedule_tue_0=0&schedule_tue_1=0&schedule_tue_2=0&schedule_wed_0=0&schedule_wed_1=0&schedule_wed_2=0&schedule_thu_0=0&schedule_thu_1=0&schedule_thu_2=0&schedule_fri_0=0&schedule_fri_1=0&schedule_fri_2=0&schedule_sat_0=0&schedule_sat_1=0&schedule_sat_2=0';
 
 Settings.config(
-  { url: "http://home.hypest.org/armlocksettings.html" },
+  { url: "http://home.hypest.org/fosAlarmSettings.html" },
   function(e) {
   },
   function(e) {
-    console.log('Recieved settings!'); 
-    var options = e.options;
-    var url = options.ipcam_url;
-    var username = options.ipcam_username;
-    var password = options.ipcam_password;
-    console.log(url + ", " + username + ", " + password);
+    if (e.failed) {
+      console.log('Cancelled settings!');
+      return;
+    }
+
+    console.log('Received settings!' + JSON.stringify(e, null, '\t')); 
   }
 );
 
 var mainCard = new UI.Card({
-  title: 'lockAlarm',
+  title: 'fosAlarm',
   body: 'Press up to lock or down to unlock.'
 });
+
+if (typeof Settings.option("ipcam_url") === 'undefined') {
+  mainCard.body("Please fill in settings.");
+}
 
 mainCard.show();
 
@@ -46,14 +44,16 @@ var waitingCard = new UI.Card({
   body: "Accessing ipcam..."
 });
 
-var auth = 'Basic ' + btoa(ipcam_username + ':' + ipcam_password);
+function getAuthString() {
+  return 'Basic ' + btoa(Settings.option("ipcam_username") + ':' + Settings.option("ipcam_password"));
+}
 
 function alarmMailTo(newValue) {
   waitingCard.show();
 
-  ajax({url: setAlarmUrl + "&mail=" + newValue, type: 'text', headers : { Authorization: auth }},
+  ajax({url: Settings.option("ipcam_url") + setAlarmUri + "&mail=" + newValue, type: 'text', headers : { Authorization: getAuthString() }},
        function(js) {
-         ajax({url: statusUrl, type: 'text', headers : { Authorization: auth }},
+         ajax({url: Settings.option("ipcam_url") + statusUri, type: 'text', headers : { Authorization: getAuthString() }},
               function(js) {
                 eval(js);
 
@@ -64,7 +64,7 @@ function alarmMailTo(newValue) {
 
                 setTimeout(function() {
                   mainCard.hide();
-                }, 1000);
+                }, 3000);
               },
               function(error) {
                 mainCard.body("An error has occured while fetching status.");
