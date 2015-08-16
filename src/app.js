@@ -15,7 +15,7 @@ var statusUri =  '/get_params.cgi';
 var setAlarmUri = '/set_alarm.cgi?next_url=alarm.htm&motion_armed=1&input_armed=0&motion_sensitivity=3&iolinkage=0&upload_interval=0&schedule_enable=0&schedule_sun_0=0&schedule_sun_1=0&schedule_sun_2=0&schedule_mon_0=0&schedule_mon_1=0&schedule_mon_2=0&schedule_tue_0=0&schedule_tue_1=0&schedule_tue_2=0&schedule_wed_0=0&schedule_wed_1=0&schedule_wed_2=0&schedule_thu_0=0&schedule_thu_1=0&schedule_thu_2=0&schedule_fri_0=0&schedule_fri_1=0&schedule_fri_2=0&schedule_sat_0=0&schedule_sat_1=0&schedule_sat_2=0';
 
 Settings.config(
-  { url: "http://home.hypest.org/fosAlarmSettings.html" },
+  { url: "http://hypest.github.io/fosAlarmPebble/fosAlarmSettings.html" },
   function(e) {
   },
   function(e) {
@@ -24,7 +24,7 @@ Settings.config(
       return;
     }
 
-    console.log('Received settings!' + JSON.stringify(e, null, '\t')); 
+    console.log('Received settings!'/* + JSON.stringify(e, null, '\t')*/); 
   }
 );
 
