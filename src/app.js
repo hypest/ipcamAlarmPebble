@@ -4,7 +4,7 @@
  * This is where you write your app.
  */
 
-console.log('fosAlarm is starting');
+console.log('IP Cam Alarm is starting');
 
 var UI = require('ui');
 var Vector2 = require('vector2');
@@ -15,7 +15,7 @@ var statusUri =  '/get_params.cgi';
 var setAlarmUri = '/set_alarm.cgi?next_url=alarm.htm&motion_armed=1&input_armed=0&motion_sensitivity=3&iolinkage=0&upload_interval=0&schedule_enable=0&schedule_sun_0=0&schedule_sun_1=0&schedule_sun_2=0&schedule_mon_0=0&schedule_mon_1=0&schedule_mon_2=0&schedule_tue_0=0&schedule_tue_1=0&schedule_tue_2=0&schedule_wed_0=0&schedule_wed_1=0&schedule_wed_2=0&schedule_thu_0=0&schedule_thu_1=0&schedule_thu_2=0&schedule_fri_0=0&schedule_fri_1=0&schedule_fri_2=0&schedule_sat_0=0&schedule_sat_1=0&schedule_sat_2=0';
 
 Settings.config(
-  { url: "http://hypest.github.io/fosAlarmPebble/fosAlarmSettings.html" },
+  { url: "http://hypest.github.io/ipcamAlarmPebble/ipcamAlarmSettings.html" },
   function(e) {
   },
   function(e) {
@@ -29,7 +29,7 @@ Settings.config(
 );
 
 var mainCard = new UI.Card({
-  title: 'fosAlarm',
+  title: 'IP Cam Alarm',
   body: 'Press up to lock or down to unlock.'
 });
 

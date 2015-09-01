@@ -1,5 +1,5 @@
-# fosAlarmPebble
-Toggle the email alarm in your foscam ip camera.
+# IP Cam Alarm for Pebble
+Toggle the email alarm of your foscam ip camera.
 
 This is a CloudPebble.net project.
 

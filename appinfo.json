@@ -4,7 +4,7 @@
         "configurable"
     ],
     "companyName": "stefanostogoulidis@gmail.com",
-    "longName": "fosAlarm",
+    "longName": "IP Cam Alarm",
     "projectType": "pebblejs",
     "resources": {
         "media": [
@@ -32,7 +32,7 @@
         ]
     },
     "sdkVersion": "3",
-    "shortName": "fosAlarm",
+    "shortName": "ipcamAlarm",
     "uuid": "1d38a7c0-48c8-462b-b09f-8c4ef63663f4",
     "versionCode": 1,
     "versionLabel": "1.0",
