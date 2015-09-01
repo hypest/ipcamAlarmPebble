@@ -34,7 +34,7 @@ var mainCard = new UI.Card({
 });
 
 if (typeof Settings.option("ipcam_url") === 'undefined') {
-  mainCard.body("Please fill in settings.");
+  mainCard.body("Please fill in settings using the Pebble app.");
 }
 
 mainCard.show();
