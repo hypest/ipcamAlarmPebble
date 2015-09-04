@@ -10,6 +10,8 @@ var UI = require('ui');
 var ajax = require('ajax');
 var Settings = require('settings');
 
+var closeAppTimeoutId;
+
 Settings.config(
   { url: "http://hypest.github.io/ipcamAlarmPebble/ipcamAlarmSettings.html" },
   function(e) {
@@ -106,7 +108,7 @@ function verifyStatus() {
   
     waitingCard.hide();
   
-    setTimeout(function() {
+    closeAppTimeoutId = setTimeout(function() {
       mainCard.hide();
     }, 3000);
   });
@@ -132,9 +134,11 @@ function alarmMailTo(newValue) {
 }
 
 mainCard.on('click', 'up', function(e) {
+  clearTimeout(closeAppTimeoutId);
   alarmMailTo(1);
 });
 
 mainCard.on('click', 'down', function(e) {
+  clearTimeout(closeAppTimeoutId);
   alarmMailTo(0);
 });
