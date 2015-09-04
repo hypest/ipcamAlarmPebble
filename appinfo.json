@@ -34,8 +34,8 @@
     "sdkVersion": "3",
     "shortName": "ipcamAlarm",
     "uuid": "1d38a7c0-48c8-462b-b09f-8c4ef63663f4",
-    "versionCode": 1,
-    "versionLabel": "1.0",
+    "versionCode": 2,
+    "versionLabel": "1.1",
     "watchapp": {
         "hiddenApp": false,
         "watchface": false
